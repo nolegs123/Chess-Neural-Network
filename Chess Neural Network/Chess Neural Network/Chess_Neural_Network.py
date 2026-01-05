@@ -10,3 +10,5 @@ print(dag_function)
 
 print("ALOHA MY AMIGOS")
 print("HEJ HEJ")
+print("NEJ NEJ")
+print("TA")
