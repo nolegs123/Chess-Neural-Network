@@ -8,3 +8,5 @@ def dag_function():
 
 print(dag_function)
 
+print("ALOHA MY AMIGOS")
+print("HEJ HEJ")
