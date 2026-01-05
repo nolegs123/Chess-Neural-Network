@@ -5,11 +5,12 @@ print("ALOHA DAG")
 
 def dag_function():
     abekat = 10
+    king = 100
     return "DAG-MEISTER"
 
 print(dag_function())
 
-print("ALOHA MY AMIGOS")
+print("HOLA MI AMIGOS")
 print("HEJ HEJ")
 print("NEJ NEJ")
 print("TA")
