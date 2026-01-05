@@ -13,3 +13,5 @@ elif message == "hallo":
     print("HALLO")
 elif message == "witaf":
     print("WITAF")
+else:
+    print("BRUH MOMEMENT")
