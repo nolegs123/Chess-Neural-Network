@@ -5,7 +5,6 @@ print("ALOHA DAG")
 
 def dag_function():
     abekat = 10
-    king = 100
     return "DAG-MEISTER"
 
 print(dag_function())
