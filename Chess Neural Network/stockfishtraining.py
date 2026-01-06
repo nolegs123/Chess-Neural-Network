@@ -22,11 +22,23 @@ for shard_id in range(1000):
 
 def generate_board(move_amount: int) -> str:
     board = chess.Board()
+
     for _ in range(move_amount):
+        if board.is_game_over():
+            board = chess.Board()
+            continue
+
         legal_moves = list(board.legal_moves)
-        chosen_move = random.choice(legal_moves)
-        board.push(chosen_move)
+        if not legal_moves:
+            board = chess.Board()
+            continue
+
+        board.push(random.choice(legal_moves))
+
+        if board.is_checkmate():
+            board = chess.Board()
 
     return board.fen()
+
 
 engine.quit()
