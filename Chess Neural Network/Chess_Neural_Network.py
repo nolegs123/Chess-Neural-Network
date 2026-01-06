@@ -1,17 +1,3 @@
-print("HELLO WORLD")
-print("HEJ RUNE")
-print("HOLA MIKKEL")
-print("ALOHA DAG")
+# Neural Network gradient descent
 
-def dag_function():
-    abekat = 10
-    return "DAG-MEISTER"
-
-print(dag_function())
-
-print("HOLA MI AMIGOS")
-print("HEJ HEJ")
-print("NEJ NEJ")
-print("TA")
-print("Tak for hjælpen!")
-print("Tak for i dag gutter. Vi ses i morgen :D")
+step = 1e-3 # step size / learning rate
