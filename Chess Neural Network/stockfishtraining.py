@@ -23,7 +23,10 @@ def generate_board(move_amount: int) -> str:
 
     return board.fen()
 
+
+# Open stockfish engine
 engine = chess.engine.SimpleEngine.popen_uci(r"C:\Users\mikke\Downloads\stockfish-windows-x86-64-avx2\stockfish\stockfish-windows-x86-64-avx2.exe")
+
 for shard_id in range(1000):
     with open(f"FENs/FEN_moves_{shard_id}.txt", "r") as file: # Iterate through and open each FEN shard file
         FENs = file.readlines() # Returns a list
