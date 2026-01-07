@@ -4,6 +4,10 @@ board = chess.Board()
 
 def evaluate_board(board) -> int:
     pieces = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
+
+    if board.is_checkmate():
+        return float('-inf') if board.turn == chess.WHITE else float('inf')
+
     evaluation = 0
 
     for piece_type, value in pieces.items():
@@ -60,5 +64,3 @@ def get_best_move(board):
             best_eval = eval
 
     return best_move
-
-print(get_best_move(chess.Board()))
