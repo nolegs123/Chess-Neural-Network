@@ -2,7 +2,7 @@ import chess
 import chess.engine
 import random
 
-def generate_board(move_amount: int) -> str:
+def generate_board(move_amount: int) -> str: # returns new board (FEN)
     board = chess.Board()
 
     for _ in range(move_amount):
@@ -37,7 +37,7 @@ for shard_id in range(1000):
                 board = chess.Board(FEN)
 
                 if board.is_game_over():
-                    board = chess.Board(generate_board(random.randint(0, 100)))
+                    board = chess.Board(generate_board(random.randint(0, 100))) # generate new board
                 
                 # analyze move
                 info = engine.analyse(board, chess.engine.Limit(depth=12))
