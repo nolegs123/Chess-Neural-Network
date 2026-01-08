@@ -1,19 +1,18 @@
 import torch
 
-# Neural Network gradient descent
+#--- Neural Network gradient descent ---#
 
-import torch
-
+# Specific piece layers for tensor/matrix
 PIECE_TO_CHANNEL = {
     "P": 0, "N": 1, "B": 2, "R": 3, "Q": 4, "K": 5,
-    "p": 6, "n": 7, "b": 8, "r": 9, "q": 10, "k": 11,
+    "p": 6, "n": 7, "b": 8, "r": 9, "q": 10, "k": 11, 
 }
 
 def fen_to_tensor(fen):
-    parts = fen.split()
-    board, turn, castling, ep, halfmove = parts[:5]
+    parts = fen.split() # Make list of FEN string
+    board, turn, castling, ep, halfmove = parts[:5] # Fetch board/game details
 
-    tensor = torch.zeros((19, 8, 8), dtype=torch.float32)
+    tensor = torch.zeros((19, 8, 8), dtype=torch.float32) # Initialize 19x8x8 matrix with zero elements
 
     # --- board ---
     rows = board.split("/")
@@ -28,7 +27,7 @@ def fen_to_tensor(fen):
 
     # --- side to move ---
     if turn == "w":
-        tensor[12, :, :] = 1
+        tensor[12, :, :] = 1 # Layer 12 in matrix represents which turn it is: 0 for b, 1 for w
 
     # --- castling rights ---
     if "K" in castling: tensor[13, :, :] = 1
