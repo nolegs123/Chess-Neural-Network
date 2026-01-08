@@ -9,7 +9,7 @@ PIECE_TO_CHANNEL = {
     "p": 6, "n": 7, "b": 8, "r": 9, "q": 10, "k": 11,
 }
 
-def fen_to_tensor(fen):
+def fen_to_tensor(fen: str) -> torch.tensor:
     parts = fen.split()
     board, turn, castling, ep, halfmove = parts[:5]
 
@@ -49,6 +49,26 @@ def fen_to_tensor(fen):
 
     return tensor
 
+
+def generate_all_uci_moves():
+    files = "abcdefgh"
+    ranks = "12345678"
+    promotions = ["q", "r", "b", "n"]
+
+    moves = []
+
+    for from_file in files:
+        for from_rank in ranks:
+            for to_file in files:
+                for to_rank in ranks:
+                    moves.append(f"{from_file}{from_rank}{to_file}{to_rank}")
+                    if from_rank == "7" and to_rank == "8":
+                        for promotion in promotions:
+                            moves.append(f"{from_file}{from_rank}{to_file}{to_rank}{promotion}")
+                    if from_rank == "2" and to_rank == "1":
+                        for promotion in promotions:
+                            moves.append(f"{from_file}{from_rank}{to_file}{to_rank}{promotion}")
+    return moves
 
 
 print(fen_to_tensor("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"))
