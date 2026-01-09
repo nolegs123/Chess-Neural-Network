@@ -17,7 +17,7 @@ def fen_to_tensor(fen):
     # --- board ---
     rows = board.split("/")
     for rank, row in enumerate(rows):
-        file = 0
+        file = 0 # start at file/col 0
         for char in row:
             if char.isdigit():
                 file += int(char)
