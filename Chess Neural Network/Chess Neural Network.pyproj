@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Chess_Neural_Network.py</StartupFile>
+    <StartupFile>data_encoding.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Chess_Neural_Network.py" />
+    <Compile Include="data_encoding.py" />
+    <Compile Include="file.py" />
+    <Compile Include="neural_network.py" />
     <Compile Include="ny_fil.py" />
     <Compile Include="stockfishtraining.py" />
     <Compile Include="symbolicAI.py" />
