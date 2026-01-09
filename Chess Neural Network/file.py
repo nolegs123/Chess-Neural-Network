@@ -101,7 +101,7 @@ for epoch in range(num_epochs):
         # Update accuracy metric
         accuracy_metric.update(out, y)
 
-    # Print accuracy for epoch            
+    # Print accuracy for epoch
     acc = accuracy_metric.compute()
     print(f'Training accuracy = {acc}')
 
