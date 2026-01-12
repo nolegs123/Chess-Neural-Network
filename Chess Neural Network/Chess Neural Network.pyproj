@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>symbolicAI.py</StartupFile>
+    <StartupFile>equal_positions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,11 +23,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="data_encoding.py" />
+    <Compile Include="equal_positions.py" />
     <Compile Include="file.py" />
     <Compile Include="neural_network.py" />
     <Compile Include="ny_fil.py" />
     <Compile Include="stockfishtraining.py" />
     <Compile Include="symbolicAI.py" />
+    <Compile Include="chess_stats.ipynb" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.11" />
