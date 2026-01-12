@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>data_encoding.py</StartupFile>
+    <StartupFile>neural_network.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>Chess Neural Network</Name>
     <RootNamespace>Chess Neural Network</RootNamespace>
+    <InterpreterId>Global|VisualStudio|Python311</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +28,11 @@
     <Compile Include="ny_fil.py" />
     <Compile Include="stockfishtraining.py" />
     <Compile Include="symbolicAI.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.11" />
+    <InterpreterReference Include="Global|PythonCore|3.14" />
+    <InterpreterReference Include="Global|VisualStudio|Python311" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

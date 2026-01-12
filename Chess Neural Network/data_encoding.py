@@ -66,18 +66,3 @@ def generate_all_uci_moves():
                         for promotion in promotions:
                             moves.append(f"{from_file}{from_rank}{to_file}{to_rank}{promotion}")
     return sorted(moves)
-
-all_moves = generate_all_uci_moves()
-uci_to_id = {uci: idx for idx, uci in enumerate(all_moves)} # Translation map of UCI move to ID
-id_to_uci = {idx: uci for idx, uci in enumerate(all_moves)} # Translation map of ID to UCI move
-
-
-print(fen_to_tensor("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"))
-print(len(generate_all_uci_moves()))
-
-step = 1e-3 # step size / learning rate
-
-# gradient descent
-for i in range(1000):
-    pass
-

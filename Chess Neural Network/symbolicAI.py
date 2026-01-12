@@ -16,51 +16,68 @@ def evaluate_board(board) -> int:
 
     return evaluation
 
-def minimax(board, depth):
+def minimax(board, depth, alpha, beta):
     if depth == 0 or board.is_game_over():
         return evaluate_board(board)
 
-    legal_moves = board.legal_moves
+    legal_moves = list(board.legal_moves)
 
     if board.turn == chess.WHITE:
         best_eval = float('-inf')
         for move in legal_moves:
             board.push(move)
-            eval = minimax(board, depth - 1)
-            print(move)
+            eval = minimax(board, depth - 1, alpha, beta)
             board.pop()
 
             if eval > best_eval:
                 best_eval = eval
 
+            alpha = max(alpha, best_eval)   
+
+            if beta <= alpha:
+                break 
+
         return best_eval
+    
     elif board.turn == chess.BLACK:
         best_eval = float('inf')
         for move in legal_moves:
             board.push(move)
-            eval = minimax(board, depth -1)
-            print(move)
+            eval = minimax(board, depth -1, alpha, beta)
             board.pop()
 
             if eval < best_eval:
                 best_eval = eval
 
-        return best_eval
+            beta = min(beta, best_eval)
 
+            if beta <= alpha:
+                break 
+
+        return best_eval
 
 def get_best_move(board):
     best_move = None
     best_eval = float('-inf') if board.turn == chess.WHITE else float('inf')
 
-    legal_moves = board.legal_moves
+    alpha = float("-inf")
+    beta = float("inf")
+
+    legal_moves = list(board.legal_moves)
 
     for move in legal_moves:
         board.push(move)
-        eval = minimax(board, 3)
+        eval = minimax(board, 3, alpha, beta)
         board.pop()
 
-        if eval > best_eval and board.turn == chess.WHITE or eval < best_eval and board.turn == chess.BLACK:
+        if (board.turn == chess.WHITE and eval > best_eval) or (board.turn == chess.BLACK and eval < best_eval):
             best_move = move
             best_eval = eval
+
+            if board.turn == chess.WHITE:
+                alpha = max(alpha, best_eval)
+            else:
+                beta = min(beta, best_eval)
+            
 
     return best_move

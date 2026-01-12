@@ -416,3 +416,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Chess Neural Network/Data/testing_data/FEN_optimal_move_975.txt
+/Chess Neural Network/Data/testing_data/FEN_optimal_move_976.txt
+/Chess Neural Network/Data/testing_data
+/Chess Neural Network/Data/training_data
