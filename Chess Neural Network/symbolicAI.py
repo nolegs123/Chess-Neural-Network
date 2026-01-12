@@ -16,15 +16,28 @@ def evaluate_board(board) -> int:
 
     return evaluation
 
+def order_moves(board) -> list:
+    captures = []
+    non_captures = []
+    legal_moves = board.legal_moves
+
+    for move in legal_moves:
+        if board.is_capture(move):
+            captures.append(move)
+        else:
+            non_captures.append(move)
+
+    return captures + non_captures
+
 def minimax(board, depth, alpha, beta):
     if depth == 0 or board.is_game_over():
         return evaluate_board(board)
 
-    legal_moves = list(board.legal_moves)
+    sorted_moves = order_moves(board)
 
     if board.turn == chess.WHITE:
         best_eval = float('-inf')
-        for move in legal_moves:
+        for move in sorted_moves:
             board.push(move)
             eval = minimax(board, depth - 1, alpha, beta)
             board.pop()
@@ -41,9 +54,9 @@ def minimax(board, depth, alpha, beta):
     
     elif board.turn == chess.BLACK:
         best_eval = float('inf')
-        for move in legal_moves:
+        for move in sorted_moves:
             board.push(move)
-            eval = minimax(board, depth -1, alpha, beta)
+            eval = minimax(board, depth - 1, alpha, beta)
             board.pop()
 
             if eval < best_eval:
@@ -63,11 +76,11 @@ def get_best_move(board):
     alpha = float("-inf")
     beta = float("inf")
 
-    legal_moves = list(board.legal_moves)
+    sorted_moves = order_moves(board)
 
-    for move in legal_moves:
+    for move in sorted_moves:
         board.push(move)
-        eval = minimax(board, 3, alpha, beta)
+        eval = minimax(board, 5, alpha, beta)
         board.pop()
 
         if (board.turn == chess.WHITE and eval > best_eval) or (board.turn == chess.BLACK and eval < best_eval):
@@ -81,3 +94,5 @@ def get_best_move(board):
             
 
     return best_move
+
+print(get_best_move(chess.Board("r1bqkb1r/pppp2pp/2n2n2/4pp2/2P5/2N1P1P1/PP1P1PBP/R1BQK1NR b KQkq - 0 5")))

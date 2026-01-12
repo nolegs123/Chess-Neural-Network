@@ -117,7 +117,7 @@ for epoch in range(start_epoch, EPOCHS):
 
         for shard_id in range(sub_epoch * SHARDS_PER_SUB_EPOCH,
                               (sub_epoch + 1) * SHARDS_PER_SUB_EPOCH):
-
+            print(shard_id)
             train_shard_path = f"{TRAINING_PATH}/FEN_optimal_move_{shard_id}.txt"
             train_dataset = load_shard(train_shard_path, uci_to_id)
             train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
@@ -152,6 +152,7 @@ for epoch in range(start_epoch, EPOCHS):
 
         with torch.no_grad():
             for shard_id in range(975, 1000):
+                print(shard_id)
                 test_shard_path = f"{TESTING_PATH}/FEN_optimal_move_{shard_id}.txt"
                 test_dataset = load_shard(test_shard_path, uci_to_id)
                 test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
