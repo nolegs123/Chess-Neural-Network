@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>moves_to_be_analyzed.py</StartupFile>
+    <StartupFile>Symbolic_AIs\moves_to_be_analyzed.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,16 +22,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Neural Network\data_encoding.py" />
+    <Compile Include="Neural_Network\data_encoding.py" />
     <Compile Include="equal_positions.py" />
-    <Compile Include="Symbolic AI\evaluation.py" />
+    <Compile Include="Symbolic_AIs\ab_pruning.py" />
+    <Compile Include="Symbolic_AIs\minimax.py" />
+    <Compile Include="Symbolic_AI\evaluation.py" />
     <Compile Include="file.py" />
-    <Compile Include="moves_to_be_analyzed.py" />
-    <Compile Include="Neural Network\neural_network.py" />
-    <Compile Include="Pre Processing\PGN_to_FEN.py" />
-    <Compile Include="Pre Processing\stockfishtraining.py" />
-    <Compile Include="Symbolic AI\move_sort.py" />
-    <Compile Include="Symbolic AI\symbolicAI.py" />
+    <Compile Include="Symbolic_AIs\moves_to_be_analyzed.py" />
+    <Compile Include="Neural_Network\neural_network.py" />
+    <Compile Include="Preprocessing\PGN_to_FEN.py" />
+    <Compile Include="Preprocessing\stockfishtraining.py" />
+    <Compile Include="Symbolic_AI\move_sort.py" />
+    <Compile Include="Symbolic_AI\symbolicAI.py" />
     <Compile Include="chess_stats.ipynb" />
   </ItemGroup>
   <ItemGroup>
@@ -40,9 +42,10 @@
     <InterpreterReference Include="Global|VisualStudio|Python311" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Neural Network\" />
-    <Folder Include="Pre Processing\" />
-    <Folder Include="Symbolic AI\" />
+    <Folder Include="Neural_Network\" />
+    <Folder Include="Symbolic_AIs\" />
+    <Folder Include="Preprocessing\" />
+    <Folder Include="Symbolic_AI\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
