@@ -8,6 +8,11 @@ def evaluate_board(board) -> int:
     if board.is_checkmate():
         return float('-inf') if board.turn == chess.WHITE else float('inf')
 
+    #remis
+    if board.is_stalemate() or board.is_insufficient_material() \
+        or board.can_claim_threefold_repetition() or board.can_claim_fifty_moves():
+        return 0
+
     evaluation = 0
 
     for piece_type, value in pieces.items():
@@ -17,17 +22,40 @@ def evaluate_board(board) -> int:
     return evaluation
 
 def order_moves(board) -> list:
+    piece_value = {
+        chess.PAWN: 1,
+        chess.KNIGHT: 3,
+        chess.BISHOP: 3,
+        chess.ROOK: 5,
+        chess.QUEEN: 9,
+        chess.KING: 100
+    }
+
     captures = []
     non_captures = []
-    legal_moves = board.legal_moves
+    legal_moves = list(board.legal_moves)
 
     for move in legal_moves:
         if board.is_capture(move):
             captures.append(move)
         else:
-            non_captures.append(move)
+            board.push(move)
+            is_check = board.is_check()
+            board.pop()
 
-    return captures + non_captures
+            if is_check:
+                checks.apppend(move)
+            else:
+                quiet.append(move)
+
+    captures.sort(
+        key=lambda m: piece_value.get(
+            board.piece_at(m.to_square).piece_type, 0)
+        if board.piece_at(m.to_square) else 0,
+        reverse=True
+    )
+
+    return captures + checks + quiet
 
 def minimax(board, depth, alpha, beta):
     if depth == 0 or board.is_game_over():
