@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>symbolicAI.py</StartupFile>
+    <StartupFile>moves_to_be_analyzed.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,21 +22,27 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="data_encoding.py" />
+    <Compile Include="Neural Network\data_encoding.py" />
     <Compile Include="equal_positions.py" />
-    <Compile Include="evaluation.py" />
+    <Compile Include="Symbolic AI\evaluation.py" />
     <Compile Include="file.py" />
     <Compile Include="moves_to_be_analyzed.py" />
-    <Compile Include="neural_network.py" />
-    <Compile Include="ny_fil.py" />
-    <Compile Include="stockfishtraining.py" />
-    <Compile Include="symbolicAI.py" />
+    <Compile Include="Neural Network\neural_network.py" />
+    <Compile Include="Pre Processing\PGN_to_FEN.py" />
+    <Compile Include="Pre Processing\stockfishtraining.py" />
+    <Compile Include="Symbolic AI\move_sort.py" />
+    <Compile Include="Symbolic AI\symbolicAI.py" />
     <Compile Include="chess_stats.ipynb" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.11" />
     <InterpreterReference Include="Global|PythonCore|3.14" />
     <InterpreterReference Include="Global|VisualStudio|Python311" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Neural Network\" />
+    <Folder Include="Pre Processing\" />
+    <Folder Include="Symbolic AI\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
