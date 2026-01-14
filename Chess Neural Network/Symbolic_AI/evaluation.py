@@ -10,7 +10,7 @@ def evaluate_board(board) -> int:
     }
 
     if board.is_checkmate():
-        return float('-inf') if board.turn == chess.WHITE else float('inf')
+        return -10000 if board.turn == chess.WHITE else 10000
 
     if board.is_stalemate() or board.is_insufficient_material() \
         or board.can_claim_threefold_repetition() or board.can_claim_fifty_moves():
