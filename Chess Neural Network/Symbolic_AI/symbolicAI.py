@@ -59,12 +59,12 @@ def get_best_move(board, depth=5):
         board.pop()
 
         if board.turn == chess.WHITE:
-            if eval > best_eval:
+            if eval >= best_eval:
                 best_eval = eval
                 best_move = move
                 alpha = max(alpha, best_eval)
         else:
-            if eval < best_eval:
+            if eval <= best_eval:
                 best_eval = eval
                 best_move = move
                 beta = min(beta, best_eval)
