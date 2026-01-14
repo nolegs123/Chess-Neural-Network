@@ -6,4 +6,4 @@ model_path = ""
 file = ""
 
 for FEN in file:
-    board = chess.Board()
+    board = chess.Board(FEN)
