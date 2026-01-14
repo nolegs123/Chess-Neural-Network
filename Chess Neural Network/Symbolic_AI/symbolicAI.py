@@ -1,4 +1,5 @@
 import chess
+import random
 from Symbolic_AI.evaluation import evaluate_board
 from Symbolic_AI.move_sort import order_moves
 
@@ -58,14 +59,18 @@ def get_best_move(board, depth=5):
         board.pop()
 
         if board.turn == chess.WHITE:
-            if eval > best_eval:
+            if eval >= best_eval:
                 best_eval = eval
                 best_move = move
                 alpha = max(alpha, best_eval)
         else:
-            if eval < best_eval:
+            if eval <= best_eval:
                 best_eval = eval
                 best_move = move
                 beta = min(beta, best_eval)
+
+    if best_move == None:
+        print(f"NO MOVE FOUND. RETURNING RANDOM. \n {board.fen()}")
+        best_move = random.choice(order_moves(board))
 
     return best_move, nodes_searched
