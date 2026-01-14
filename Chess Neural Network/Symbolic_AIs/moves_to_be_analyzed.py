@@ -59,7 +59,8 @@ for depth in depths: # Go through each depth in depths list
     minimax_nodes_searched = []
     ab_pruning_nodes_searched = []
     move_sorting_nodes_searched = []
-    for FEN in FENs: # Go through each FEN in FENs list
+    for i, FEN in enumerate(FENs): # Go through each FEN in FENs list
+        print(i+1)
         board = chess.Board(FEN)
         _, minimax_nodes = minimax.get_best_move(board, depth)
         minimax_nodes_searched.append(minimax_nodes)

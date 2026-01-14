@@ -22,8 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Comparison_Program\colosseum.py" />
     <Compile Include="Neural_Network\data_encoding.py" />
-    <Compile Include="equal_positions.py" />
+    <Compile Include="Comparison_Program\equal_positions.py" />
     <Compile Include="Symbolic_AIs\ab_pruning.py" />
     <Compile Include="Symbolic_AIs\minimax.py" />
     <Compile Include="Symbolic_AI\evaluation.py" />
@@ -43,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Neural_Network\" />
+    <Folder Include="Comparison_Program\" />
     <Folder Include="Symbolic_AIs\" />
     <Folder Include="Preprocessing\" />
     <Folder Include="Symbolic_AI\" />
