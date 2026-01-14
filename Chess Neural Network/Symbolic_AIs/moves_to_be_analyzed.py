@@ -48,7 +48,7 @@ def generate_board() -> str: # returns new board (FEN)
 
 sample_size = 30
 
-depths = [1, 2, 3, 4, 5]
+depths = [1, 2, 3, 4]
 FENs = []
 
 for i in range(sample_size):
