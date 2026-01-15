@@ -18,17 +18,16 @@ with open(equal_file, "r") as file:
             nn_color = chess.WHITE
         else:
             nn_color = chess.BLACK
-
     
         while not board.is_game_over():
             if board.turn == nn_color:
-                move, _ = symAI.get_best_move(board, 3)
-                print(board.san(move))
+                move = v1.get_best_move(board)
+                print(f"NEURAL NETWORK PLAYED: {board.san(move)}")
                 board.push(move)
                 print(board)
             else:
-                move = v1.get_best_move(board)
-                print(board.san(move))
+                move, _ = symAI.get_best_move(board, 3)
+                print(f"SYMBOLIC AI PLAYED: {board.san(move)}")
                 board.push(move)
                 print(board)
 
