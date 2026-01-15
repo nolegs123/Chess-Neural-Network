@@ -46,7 +46,3 @@ def get_best_move(board):
 
         return uci_move
 
-board = chess.Board()
-
-print(get_best_move(board))
-

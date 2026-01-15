@@ -1,6 +1,7 @@
 import chess
 import os
 import Symbolic_AI.symbolicAI as symAI
+import Comparison_Program.omnisciusV1 as v1
 
 # GET EQUAL POSITIONS
 
@@ -26,7 +27,7 @@ with open(equal_file, "r") as file:
                 board.push(move)
                 print(board)
             else:
-                move, _ = symAI.get_best_move(board, 3)
+                move = v1.get_best_move(board)
                 print(board.san(move))
                 board.push(move)
                 print(board)
