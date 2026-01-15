@@ -44,5 +44,5 @@ def get_best_move(board):
         move_id = torch.argmax(out, dim=1).item()
         uci_move = id_to_uci[move_id]
 
-        return uci_move
+        return chess.Move.from_uci(uci_move)
 

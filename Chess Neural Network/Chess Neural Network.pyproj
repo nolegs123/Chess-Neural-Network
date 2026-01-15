@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Comparison_Program\omnisciusV1.py</StartupFile>
+    <StartupFile>Comparison_Program\colosseum.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
