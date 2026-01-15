@@ -49,5 +49,5 @@ with open(equal_file, "r") as file:
         
     print("My name is Maximus Decimus Meridius, commander of the Armies of the North, General of the Felix Legions, " \
     "loyal servant to the true emperor, Marcus Aurelius. Father to a murdered son, husband to a murdered wife. And I will have my vengeance, "
-    "in this life or the next!")
+    "in this life or the next!!")
     print(f"Final Score of the colosseum:\n- Neural Network Wins: {nn_wins},\n- Symbolic AI Wins: {symAI_wins},\n- Draws: {draws}")
