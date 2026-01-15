@@ -2,7 +2,7 @@ import chess
 import random
 import minimax
 import ab_pruning
-import Symbolic_AI.symbolicAI
+import symbolicAI
 
 def mean(data: list) -> float:
     entries = len(data)
@@ -46,7 +46,7 @@ def generate_board() -> str: # returns new board (FEN)
 
     return board.fen()
 
-sample_size = 30
+sample_size = 100
 
 depths = [1, 2, 3, 4]
 FENs = []
@@ -55,22 +55,26 @@ for i in range(sample_size):
     FENs.append(generate_board()) # Generate a list of length sample_size of FEN strings
 
 for depth in depths: # Go through each depth in depths list
+    print(f"Depth is {depth}")
+
     # Different algorithms
     minimax_nodes_searched = []
     ab_pruning_nodes_searched = []
     move_sorting_nodes_searched = []
+
     for i, FEN in enumerate(FENs): # Go through each FEN in FENs list
-        print(i+1)
+        print(f"FEN: {i + 1}/{len(FENs)}")
         board = chess.Board(FEN)
+
         _, minimax_nodes = minimax.get_best_move(board, depth)
         minimax_nodes_searched.append(minimax_nodes)
-
         _, ab_nodes = ab_pruning.get_best_move(board, depth)
         ab_pruning_nodes_searched.append(ab_nodes)
 
-        _, move_sort_nodes = Symbolic_AI.symbolicAI.get_best_move(board, depth)
+        _, move_sort_nodes = symbolicAI.get_best_move(board, depth)
         move_sorting_nodes_searched.append(move_sort_nodes)
 
-    print(f"STD for minimax at depth: {depth} is {standard_deviation(minimax_nodes_searched)}")
-    print(f"STD for alpha-beta pruning at depth: {depth} is {standard_deviation(ab_pruning_nodes_searched)}")
-    print(f"STD for move sort at depth: {depth} is {standard_deviation(move_sorting_nodes_searched)}")
+    # USEFUL INFORMATION
+    print(f"Depth: {depth}, Mean: {mean(minimax_nodes_searched)}, STD: {standard_deviation(minimax_nodes_searched)}")
+    print(f"Depth: {depth}, Mean: {mean(ab_pruning_nodes_searched)}, STD: {standard_deviation(ab_pruning_nodes_searched)}")
+    print(f"Depth: {depth}, Mean: {mean(move_sorting_nodes_searched)}, STD: {standard_deviation(move_sorting_nodes_searched)}")
