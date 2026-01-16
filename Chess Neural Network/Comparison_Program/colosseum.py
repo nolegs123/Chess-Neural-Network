@@ -76,7 +76,7 @@ with open(equal_file, "r") as file:
         with open(pgn_path, "w", encoding="utf-8") as pgn_file:
             print(game, file=pgn_file)
 
-        # print final results after all games are played
+        # Save game result stats
         if board.result() == "1-0":
             if nn_color == chess.WHITE:
                 nn_wins += 1
