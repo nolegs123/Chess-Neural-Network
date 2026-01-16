@@ -27,6 +27,7 @@ print(f"Sample size for specific ME: {n}")
 
 p1 = (12 + 28 * 0.5) / 78  # NN wins + half draws
 p2 = (38 + 28 * 0.5) / 78  # Symbolic AI wins + half draws
+print(f"Proportion 1 (NN): {p1:.4f}\nProportion 2 (Symbolic AI): {p2:.4f}")
 
 alpha = 0.05
 diff = p2 - p1
