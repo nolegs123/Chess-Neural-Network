@@ -7,7 +7,7 @@ engine = chess.engine.SimpleEngine.popen_uci(
     r"C:\Users\mikke\Downloads\stockfish-windows-x86-64-avx2\stockfish\stockfish-windows-x86-64-avx2.exe"
 )
 
-desired_fens = 103
+desired_fens = 1826
 
 pgn = open(pgn_file)
 found_fens = 0
@@ -34,21 +34,23 @@ while found_fens < desired_fens:
 
             if -26 <= score <= 26:
                 fen = board.fen()
-
                 if fen not in seen_positions:
-                    with open("equal_positions/equal_positions.txt", "a") as f:
-                        if board.turn == chess.WHITE:
-                            if len(white_eq_positions) < desired_fens/2:
-                                white_eq_positions.append(fen)
-                                f.write(f"{fen}\n")
-                                seen_positions.add(fen)
-                                found_fens += 1
-                                print(f"WHITE POS FOUND: {len(white_eq_positions)}")
-                        elif board.turn == chess.BLACK:
-                            if len(black_eq_positions) < desired_fens/2:
-                                black_eq_positions.append(fen)
-                                f.write(f"{fen}\n")
-                                seen_positions.add(fen)
-                                found_fens += 1
-                                print(f"BLACK POS FOUND: {len(black_eq_positions)}")
+                    if board.turn == chess.WHITE:
+                        if len(white_eq_positions) < desired_fens/2:
+                            white_eq_positions.append(f"{fen}\n")
+                            seen_positions.add(fen)
+                            found_fens += 1
+                            print(f"WHITE POS FOUND: {len(white_eq_positions)}")
+                    elif board.turn == chess.BLACK:
+                        if len(black_eq_positions) < desired_fens/2:
+                            black_eq_positions.append(f"{fen}\n")
+                            seen_positions.add(fen)
+                            found_fens += 1
+                            print(f"BLACK POS FOUND: {len(black_eq_positions)}")
             break
+
+with open("equal_positions/equal_positions.txt", "a") as f:
+    for fen in white_eq_positions:
+        f.write(fen)
+    for fen in black_eq_positions:
+        f.write(fen)
