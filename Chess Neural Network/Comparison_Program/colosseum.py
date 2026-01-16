@@ -84,9 +84,9 @@ with open(equal_file, "r") as file:
                 symAI_wins += 1
         elif board.result() == "0-1":
             if nn_color == chess.BLACK:
-                symAI_wins += 1
+                nn_wins+= 1
             else:
-                nn_wins += 1
+                symAI_wins += 1
         else:
             draws += 1
         

@@ -129,9 +129,9 @@ for epoch in range(start_epoch, EPOCHS):
                 out = omniscius(x)
                 loss = loss_function(out, y)
 
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
+                optimizer.zero_grad() # reset gradients
+                loss.backward() # backpropagation to compute gradients
+                optimizer.step() # update weights
 
                 train_loss_sum += loss.item()
                 train_batch_count += 1
