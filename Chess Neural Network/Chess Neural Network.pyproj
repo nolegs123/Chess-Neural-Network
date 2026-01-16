@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Comparison_Program\colosseum.py</StartupFile>
+    <StartupFile>chess_stats.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="chess_stats.py" />
     <Compile Include="Comparison_Program\colosseum.py" />
     <Compile Include="Comparison_Program\omnisciusV1.py" />
     <Compile Include="Neural_Network\data_encoding.py" />
