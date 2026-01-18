@@ -35,3 +35,11 @@ lower = diff - stats.norm.ppf(1-alpha/2) * np.sqrt((p1 * (1 - p1) / 78) + (p2 * 
 upper = diff + stats.norm.ppf(1-alpha/2) * np.sqrt((p1 * (1 - p1) / 78) + (p2 * (1 - p2) / 78))
 
 print(f"Confidence interval of the difference: [{lower:.4f}, {upper:.4f}]")
+
+#%% NEW FORMULA
+alpha = 0.05
+margin_of_error = 0.015
+
+sample_size1 = p1 * (1 - p1) * (stats.norm.ppf(1 - alpha/2)/margin_of_error)**2
+sample_size2 = p2 * (1 - p2) * (stats.norm.ppf(1- alpha/2)/margin_of_error)**2
+print(sample_size1, sample_size2)
