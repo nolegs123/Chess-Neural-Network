@@ -7,7 +7,7 @@ engine = chess.engine.SimpleEngine.popen_uci(
     r"C:\Users\mikke\Downloads\stockfish-windows-x86-64-avx2\stockfish\stockfish-windows-x86-64-avx2.exe"
 )
 
-desired_fens = 3795
+desired_fens = 3796
 
 pgn = open(pgn_file)
 found_fens = 0

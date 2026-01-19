@@ -43,3 +43,23 @@ margin_of_error = 0.015
 sample_size1 = p1 * (1 - p1) * (stats.norm.ppf(1 - alpha/2)/margin_of_error)**2
 sample_size2 = p2 * (1 - p2) * (stats.norm.ppf(1- alpha/2)/margin_of_error)**2
 print(sample_size1, sample_size2)
+
+nn_points = 1317.5/3796
+sym_points = 2478.5/3796
+
+difference = sym_points - nn_points
+
+lower_nn = nn_points - 1.96 * (nn_points * (1 - nn_points)/3796) ** 0.5
+upper_nn = nn_points + 1.96 * (nn_points * (1 - nn_points)/3796) ** 0.5
+
+print(lower_nn, upper_nn)
+
+lower_sym = sym_points - 1.96 * (sym_points * (1 - sym_points)/3796) ** 0.5
+upper_sym = sym_points + 1.96 * (sym_points * (1 - sym_points)/3796) ** 0.5
+
+print(lower_sym, upper_sym)
+
+lower_diff = difference - 1.96 * (difference * (1 - difference)/3796) ** 0.5
+upper_diff = difference + 1.96 * (difference * (1 - difference)/3796) ** 0.5
+
+print(lower_diff, upper_diff)
