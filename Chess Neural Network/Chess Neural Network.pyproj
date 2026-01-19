@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f5657054-16c4-431e-ad31-a33a3f908955</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Comparison_Program\equal_positions.py</StartupFile>
+    <StartupFile>chess_stats.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -37,7 +37,6 @@
     <Compile Include="Preprocessing\stockfishtraining.py" />
     <Compile Include="Symbolic_AI\move_sort.py" />
     <Compile Include="Symbolic_AI\symbolicAI.py" />
-    <Compile Include="chess_stats.ipynb" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.11" />

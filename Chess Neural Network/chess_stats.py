@@ -46,7 +46,7 @@ print(f"P-value: {p_value:.4f}")
 
 
 #%% Confidence interval of the difference in proportions
-"""
+
 p1 = (12 + 28 * 0.5) / 1848  # NN wins + half draws
 p2 = (38 + 28 * 0.5) / 1848  # Symbolic AI wins + half draws
 print(f"Proportion 1 (NN): {p1:.4f}\nProportion 2 (Symbolic AI): {p2:.4f}")
@@ -57,4 +57,43 @@ lower = diff - stats.norm.ppf(1-alpha/2) * np.sqrt((p1 * (1 - p1) / 78) + (p2 * 
 upper = diff + stats.norm.ppf(1-alpha/2) * np.sqrt((p1 * (1 - p1) / 78) + (p2 * (1 - p2) / 78))
 
 print(f"Confidence interval of the difference: [{lower:.4f}, {upper:.4f}]")
-"""
+
+#%% NEW FORMULA
+alpha = 0.05
+margin_of_error = 0.015
+
+sample_size1 = p1 * (1 - p1) * (stats.norm.ppf(1 - alpha/2)/margin_of_error)**2
+sample_size2 = p2 * (1 - p2) * (stats.norm.ppf(1- alpha/2)/margin_of_error)**2
+print(sample_size1, sample_size2)
+
+nn_points = 1317.5/3796
+sym_points = 2478.5/3796
+
+difference = sym_points - nn_points
+
+lower_nn = nn_points - 1.96 * (nn_points * (1 - nn_points)/3796) ** 0.5
+upper_nn = nn_points + 1.96 * (nn_points * (1 - nn_points)/3796) ** 0.5
+
+print(lower_nn, upper_nn)
+
+lower_sym = sym_points - 1.96 * (sym_points * (1 - sym_points)/3796) ** 0.5
+upper_sym = sym_points + 1.96 * (sym_points * (1 - sym_points)/3796) ** 0.5
+
+print(lower_sym, upper_sym)
+
+lower_diff = difference - 1.96 * (difference * (1 - difference)/3796) ** 0.5
+upper_diff = difference + 1.96 * (difference * (1 - difference)/3796) ** 0.5
+
+print(lower_diff, upper_diff)
+
+
+#%% sample size calculation for one proportion for specific power for hyothesis testing
+
+alpha = 0.01  # significance level
+beta = 0.01   # Type II error rate
+p0 = 0.5      # null hypothesis proportion
+p1 = 0.45    # alternative hypothesis proportion
+# effect size = p1 - p0 = 0.05
+n = (stats.norm.ppf(1-alpha/2) * np.sqrt(p0 * (1 - p0)) + stats.norm.ppf(1 - beta) * np.sqrt(p1 * (1 - p1)))**2 / (p1 - p0)**2
+print(f"Sample size for specific power: {np.ceil(n)}")
+# %%
