@@ -11,6 +11,7 @@ p1 = 9.5/30     # NN baseline/pilot study win rate
 p2 = 20.5/30    # Symbolic AI baseline/pilot study win rate
 
 
+
 n = ((stats.norm.ppf(alpha/2) + stats.norm.ppf(beta))**2 * (p1 * (1 - p1) + p2 * (1 - p2))) / (p1 - p2)**2
 
 print(f"Sample size: {n}")
@@ -23,10 +24,31 @@ alpha = 0.05  # significance level
 n = stats.norm.ppf(alpha/2)**2 * (p1 * (1 - p1) + p2 * (1 - p2)) / ME**2
 print(f"Sample size for specific ME: {n}")
 
-#%% Confidence interval of the difference in proportions
+
+#%% Student's t-test for two proportions (pooled)
 
 p1 = (12 + 28 * 0.5) / 78  # NN wins + half draws
 p2 = (38 + 28 * 0.5) / 78  # Symbolic AI wins + half draws
+print(f"Proportion 1 (NN): {p1:.4f}\nProportion 2 (Symbolic AI): {p2:.4f}")
+
+p = (26 + 52) / (78 + 78)
+print(f"pooled p: {p}")
+
+z_obs = (p2-p1) / np.sqrt(p * (1 - p) * (1/n + 1/n))
+print(f"z_obs: {z_obs}")
+
+alpha = 0.05
+critical_value = stats.norm.ppf(1-alpha/2)
+print(f"Critical-interval: [{-critical_value:.4f}, {critical_value:.4f}]")
+
+p_value = 2 * (1 - stats.norm.cdf(z_obs))
+print(f"P-value: {p_value:.4f}")
+
+
+#%% Confidence interval of the difference in proportions
+"""
+p1 = (12 + 28 * 0.5) / 1848  # NN wins + half draws
+p2 = (38 + 28 * 0.5) / 1848  # Symbolic AI wins + half draws
 print(f"Proportion 1 (NN): {p1:.4f}\nProportion 2 (Symbolic AI): {p2:.4f}")
 
 alpha = 0.05
@@ -35,3 +57,4 @@ lower = diff - stats.norm.ppf(1-alpha/2) * np.sqrt((p1 * (1 - p1) / 78) + (p2 * 
 upper = diff + stats.norm.ppf(1-alpha/2) * np.sqrt((p1 * (1 - p1) / 78) + (p2 * (1 - p2) / 78))
 
 print(f"Confidence interval of the difference: [{lower:.4f}, {upper:.4f}]")
+"""
