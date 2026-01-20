@@ -1,4 +1,5 @@
 #%% Library imports
+import enum
 import numpy as np
 import scipy.stats as stats
 
@@ -63,3 +64,24 @@ lower_diff = difference - 1.96 * (difference * (1 - difference)/3796) ** 0.5
 upper_diff = difference + 1.96 * (difference * (1 - difference)/3796) ** 0.5
 
 print(lower_diff, upper_diff)
+
+
+# MOVES TO BE ANALYZED CI
+means = [30.64, 30.64, 30.64, 1013.84, 325.87, 94.04, 32954.65, 4783.58, 1029.58, 1095224.54, 54891.2, 3404.92]
+stds = [10.151896872063373, 10.151896872063373, 10.151896872063373, 406.36791609614465, 224.30798879750995, 28.81109494481582, 18067.92608289254, 4238.267478080823, 555.4305488046678, 705059.2954780388, 72680.4371632589, 1807.0373078382174]
+
+z = stats.norm.ppf(1 - (alpha/len(means))/2)
+algorithm = ""
+
+for i, mean in enumerate(means):
+    lower = mean - z * stds[i]/(100 ** 0.5)
+    upper = mean + z * stds[i]/(100 ** 0.5)
+    
+    if i % 3 == 0:
+        algorithm = "Minimax"
+    elif i % 3 == 1:
+        algorithm = "Alpha-Beta Pruning"
+    else:
+        algorithm = "Move Ordering"
+
+    print(f"Depth: {i//3 + 1}, Algorithm: {algorithm}, [{lower:.3f}, {upper:.3f}]")
