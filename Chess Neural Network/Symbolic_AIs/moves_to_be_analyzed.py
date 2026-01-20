@@ -2,30 +2,22 @@ import chess
 import random
 import minimax
 import ab_pruning
-import symbolicAI
+import Symbolic_AI.symbolicAI
 
 def mean(data: list) -> float:
-    entries = len(data)
-    total_value = 0
-
-    for val in data:
-        total_value += val
-
-    return total_value / entries
+    total = 0
+    for v in data:
+        total += v
+    return total / len(data)
 
 def standard_deviation(data: list) -> float:
-    data_mean = mean(data)
-    entries = len(data)
-    total_difference = 0
+    m = mean(data)
+    total = 0
+    for v in data:
+        total += (v - m) ** 2
+    return (total / (len(data) - 1)) ** 0.5
 
-    for val in data:
-        total_difference += (val - data_mean) ** 2
-
-    deviation = (total_difference / (entries - 1)) ** 0.5
-
-    return deviation
-
-def generate_board() -> str: # returns new board (FEN)
+def generate_board() -> str:
     move_amount = random.randint(1, 100)
     board = chess.Board()
 
@@ -46,35 +38,63 @@ def generate_board() -> str: # returns new board (FEN)
 
     return board.fen()
 
+def ratio_list(a: list, b: list) -> list:
+    out = []
+    for x, y in zip(a, b):
+        out.append(x / y)
+    return out
+
 sample_size = 100
-
 depths = [1, 2, 3, 4]
+
 FENs = []
+for _ in range(sample_size):
+    FENs.append(generate_board())
 
-for i in range(sample_size):
-    FENs.append(generate_board()) # Generate a list of length sample_size of FEN strings
+for depth in depths:
+    print("\n" + "=" * 80)
+    print(f"Depth {depth}")
+    print("=" * 80)
 
-for depth in depths: # Go through each depth in depths list
-    print(f"Depth is {depth}")
+    mm_nodes = []
+    ab_nodes = []
+    ms_nodes = []
 
-    # Different algorithms
-    minimax_nodes_searched = []
-    ab_pruning_nodes_searched = []
-    move_sorting_nodes_searched = []
+    for i, fen in enumerate(FENs):
+        print(f"FEN {i + 1}/{len(FENs)}")
+        board = chess.Board(fen)
 
-    for i, FEN in enumerate(FENs): # Go through each FEN in FENs list
-        print(f"FEN: {i + 1}/{len(FENs)}")
-        board = chess.Board(FEN)
+        _, mm = minimax.get_best_move(board, depth)
+        _, ab = ab_pruning.get_best_move(board, depth)
+        _, ms = Symbolic_AI.symbolicAI.get_best_move(board, depth)
 
-        _, minimax_nodes = minimax.get_best_move(board, depth)
-        minimax_nodes_searched.append(minimax_nodes)
-        _, ab_nodes = ab_pruning.get_best_move(board, depth)
-        ab_pruning_nodes_searched.append(ab_nodes)
+        mm_nodes.append(mm)
+        ab_nodes.append(ab)
+        ms_nodes.append(ms)
 
-        _, move_sort_nodes = symbolicAI.get_best_move(board, depth)
-        move_sorting_nodes_searched.append(move_sort_nodes)
+    print("\nRAW NODE COUNTS")
+    print("Algorithm        Mean Nodes        Std Dev")
+    print("-" * 55)
+    print(f"Minimax          {mean(mm_nodes):<18.2f}{standard_deviation(mm_nodes):.2f}")
+    print(f"AlphaBeta        {mean(ab_nodes):<18.2f}{standard_deviation(ab_nodes):.2f}")
+    print(f"MoveSorting      {mean(ms_nodes):<18.2f}{standard_deviation(ms_nodes):.2f}")
 
-    # USEFUL INFORMATION
-    print(f"Depth: {depth}, Mean: {mean(minimax_nodes_searched)}, STD: {standard_deviation(minimax_nodes_searched)}")
-    print(f"Depth: {depth}, Mean: {mean(ab_pruning_nodes_searched)}, STD: {standard_deviation(ab_pruning_nodes_searched)}")
-    print(f"Depth: {depth}, Mean: {mean(move_sorting_nodes_searched)}, STD: {standard_deviation(move_sorting_nodes_searched)}")
+    ratios = {
+        "MM / MM": ratio_list(mm_nodes, mm_nodes),
+        "MM / AB": ratio_list(mm_nodes, ab_nodes),
+        "MM / MS": ratio_list(mm_nodes, ms_nodes),
+
+        "AB / MM": ratio_list(ab_nodes, mm_nodes),
+        "AB / AB": ratio_list(ab_nodes, ab_nodes),
+        "AB / MS": ratio_list(ab_nodes, ms_nodes),
+
+        "MS / MM": ratio_list(ms_nodes, mm_nodes),
+        "MS / AB": ratio_list(ms_nodes, ab_nodes),
+        "MS / MS": ratio_list(ms_nodes, ms_nodes),
+    }
+
+    print("\nRATIOS (row / column)")
+    print("Ratio            Mean Ratio        Std Dev")
+    print("-" * 55)
+    for name, values in ratios.items():
+        print(f"{name:<15}{mean(values):<18.4f}{standard_deviation(values):.4f}")
