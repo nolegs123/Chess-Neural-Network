@@ -25,23 +25,25 @@ n = stats.norm.ppf(alpha/2)**2 * (p1 * (1 - p1) + p2 * (1 - p2)) / ME**2
 print(f"Sample size for specific ME: {n}")
 
 
-#%% Student's t-test for one proportion
-p_hat = 
+#%% Student's t-test/z-test for one proportion
+n = 3796  # total games
+p_hat = 1317.5/n  # nn points
 
-z_obs = (p2-p1) / np.sqrt(p * (1 - p) * (1/n + 1/n))
+SE_p = np.sqrt(p_hat * (1 - p_hat) / n)
+print(f"SE_p: {SE_p}")
+
+print(f"p_hat: {p_hat}")
+p_0 = 0.5 # null hypothesis proportion
+
+z_obs = (p_hat - p_0) / np.sqrt(p_0 * (1 - p_0) / n)
 print(f"z_obs: {z_obs}")
 
-alpha = 0.05
+alpha = 0.001
 critical_value = stats.norm.ppf(1-alpha/2)
 print(f"Critical-interval: [{-critical_value:.4f}, {critical_value:.4f}]")
 
-p_value = 2 * (1 - stats.norm.cdf(z_obs))
-print(f"P-value: {p_value:.4f}")
-
-
-#%% Confidence interval of the difference in proportions
-
-
+p_value = 2 * (1 - stats.norm.cdf(np.abs(z_obs)))
+print(f"P-value: {p_value:.3e}")
 
 
 #%% NEW FORMULA
