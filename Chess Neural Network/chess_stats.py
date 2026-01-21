@@ -96,12 +96,5 @@ algorithm = ""
 for i, mean in enumerate(means):
     lower = mean - z * stds[i]/(100 ** 0.5)
     upper = mean + z * stds[i]/(100 ** 0.5)
-    
-    if i % 3 == 0:
-        algorithm = "Minimax"
-    elif i % 3 == 1:
-        algorithm = "Alpha-Beta Pruning"
-    else:
-        algorithm = "Move Ordering"
 
-    print(f"Depth: {i//3 + 1}, Algorithm: {algorithm}, [{lower:.3f}, {upper:.3f}]")
+    print(f"[{lower:.3f}, {upper:.3f}]")
