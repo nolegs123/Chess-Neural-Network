@@ -25,6 +25,7 @@
     <Compile Include="chess_stats.py" />
     <Compile Include="Comparison_Program\colosseum.py" />
     <Compile Include="Comparison_Program\omnisciusV1.py" />
+    <Compile Include="data_visualisation.py" />
     <Compile Include="Neural_Network\data_encoding.py" />
     <Compile Include="Comparison_Program\equal_positions.py" />
     <Compile Include="Symbolic_AIs\ab_pruning.py" />
