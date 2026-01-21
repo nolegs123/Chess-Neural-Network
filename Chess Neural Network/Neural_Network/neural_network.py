@@ -75,14 +75,12 @@ omniscius = torch.nn.Sequential(
     torch.nn.Conv2d(128, 256, kernel_size=3, padding=1),
     torch.nn.ReLU(),
 
-    torch.nn.AdaptiveAvgPool2d((1, 1)),
     torch.nn.Flatten(),
 
-    torch.nn.Linear(256, 512),
+    torch.nn.Linear(16384, 1024),
     torch.nn.ReLU(),
 
-    torch.nn.Dropout(p=0.3),
-    torch.nn.Linear(512, 4608)
+    torch.nn.Linear(1024, 4608)
 ).to(device)
 
 loss_function = torch.nn.CrossEntropyLoss()
