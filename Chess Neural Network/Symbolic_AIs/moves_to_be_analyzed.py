@@ -44,7 +44,7 @@ def ratio_list(a: list, b: list) -> list:
         out.append(x / y)
     return out
 
-sample_size = 100
+sample_size = 30
 depths = [1, 2, 3, 4]
 
 FENs = []

@@ -26,17 +26,16 @@ print(f"Sample size for specific ME: {n}")
 
 
 #%% Student's t-test for one proportion
-p_hat = 
+#p_hat = 1
+#z_obs = (p2-p1) / np.sqrt(p * (1 - p) * (1/n + 1/n))
+#print(f"z_obs: {z_obs}")
 
-z_obs = (p2-p1) / np.sqrt(p * (1 - p) * (1/n + 1/n))
-print(f"z_obs: {z_obs}")
+#alpha = 0.05
+#critical_value = stats.norm.ppf(1-alpha/2)
+#print(f"Critical-interval: [{-critical_value:.4f}, {critical_value:.4f}]")
 
-alpha = 0.05
-critical_value = stats.norm.ppf(1-alpha/2)
-print(f"Critical-interval: [{-critical_value:.4f}, {critical_value:.4f}]")
-
-p_value = 2 * (1 - stats.norm.cdf(z_obs))
-print(f"P-value: {p_value:.4f}")
+#p_value = 2 * (1 - stats.norm.cdf(z_obs))
+#print(f"P-value: {p_value:.4f}")
 
 
 #%% Confidence interval of the difference in proportions
@@ -85,8 +84,8 @@ print(f"Sample size for specific power: {np.ceil(n)}")
 # %%
 
 # MOVES TO BE ANALYZED CI
-means = [30.64, 30.64, 30.64, 1013.84, 325.87, 94.04, 32954.65, 4783.58, 1029.58, 1095224.54, 54891.2, 3404.92]
-stds = [10.151896872063373, 10.151896872063373, 10.151896872063373, 406.36791609614465, 224.30798879750995, 28.81109494481582, 18067.92608289254, 4238.267478080823, 555.4305488046678, 705059.2954780388, 72680.4371632589, 1807.0373078382174]
+means = [1, 20.8066, 90.5957, 0.3704, 1, 4.9495, 0.2896, 0.5436, 1]
+stds = [0.0, 50.9978, 171.8798, 0.3920, 0.0, 8.4241, 0.4141, 0.3702, 0.0]
 
 z = stats.norm.ppf(1 - (alpha/len(means))/2)
 algorithm = ""
@@ -94,12 +93,5 @@ algorithm = ""
 for i, mean in enumerate(means):
     lower = mean - z * stds[i]/(100 ** 0.5)
     upper = mean + z * stds[i]/(100 ** 0.5)
-    
-    if i % 3 == 0:
-        algorithm = "Minimax"
-    elif i % 3 == 1:
-        algorithm = "Alpha-Beta Pruning"
-    else:
-        algorithm = "Move Ordering"
 
-    print(f"Depth: {i//3 + 1}, Algorithm: {algorithm}, [{lower:.3f}, {upper:.3f}]")
+    print(f"[{lower:.3f}, {upper:.3f}]")
