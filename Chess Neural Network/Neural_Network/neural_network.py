@@ -76,7 +76,7 @@ omniscius = torch.nn.Sequential(
     torch.nn.ReLU(),
 
     torch.nn.Flatten(),
-
+    
     torch.nn.Linear(16384, 1024),
     torch.nn.ReLU(),
 
