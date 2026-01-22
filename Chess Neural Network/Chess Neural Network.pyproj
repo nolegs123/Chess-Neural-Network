@@ -31,7 +31,6 @@
     <Compile Include="Symbolic_AIs\ab_pruning.py" />
     <Compile Include="Symbolic_AIs\minimax.py" />
     <Compile Include="Symbolic_AI\evaluation.py" />
-    <Compile Include="file.py" />
     <Compile Include="Symbolic_AIs\moves_to_be_analyzed.py" />
     <Compile Include="Neural_Network\neural_network.py" />
     <Compile Include="Preprocessing\PGN_to_FEN.py" />
