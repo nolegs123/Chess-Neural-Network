@@ -6,7 +6,7 @@ PIECE_TO_CHANNEL = {
     "p": 6, "n": 7, "b": 8, "r": 9, "q": 10, "k": 11, 
 }
 
-def fen_to_tensor(fen):
+def fen_to_tensor(fen: str):
     parts = fen.split() # Make list of FEN string
     board, turn, castling, ep, halfmove = parts[:5] # Fetch board/game details
 
@@ -66,3 +66,5 @@ def generate_all_uci_moves():
                         for promotion in promotions:
                             moves.append(f"{from_file}{from_rank}{to_file}{to_rank}{promotion}")
     return sorted(moves)
+
+print(generate_all_uci_moves())

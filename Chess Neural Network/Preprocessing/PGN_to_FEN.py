@@ -1,7 +1,6 @@
-import os
 import chess.pgn
 
-all_ratings_directory = r"C:\Users\mikke\Downloads\lichess_elite_2021-08\lichess_elite_2021-08.pgn"
+elite_directory = r"C:\Users\mikke\Downloads\lichess_elite_2021-08\lichess_elite_2021-08.pgn"
 
 def read_games_from_pgn(directory: str, shard_size: int = 10000):
     pgn = open(directory) # Opens entire PGN
@@ -27,5 +26,5 @@ def read_games_from_pgn(directory: str, shard_size: int = 10000):
 
                 file.write(f"{fen}\n") # Append each FEN move from each game to file
 
-read_games_from_pgn(all_ratings_directory) 
+read_games_from_pgn(elite_directory) 
 

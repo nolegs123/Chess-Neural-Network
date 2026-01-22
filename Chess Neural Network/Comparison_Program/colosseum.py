@@ -57,7 +57,7 @@ with open(equal_file, "r") as file:
 
             else:
                 move, _ = symAI.get_best_move(board, 3)
-
+                
                 if move not in board.legal_moves:
                     move = random.choice(list(board.legal_moves))
                     print("HAHA IM STUPID AND PLAYED AN ILLEGAL MOVE")
